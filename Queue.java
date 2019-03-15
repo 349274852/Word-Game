@@ -13,22 +13,6 @@ public class Queue<T> implements Iterable<T>
         return first == null;
     }
     
-    public boolean hasOne()
-    {
-        if(first == null)
-        {
-            return false;
-        }
-        else if(first != null && first.next == null)
-        {
-            return true;
-        }
-        else 
-        {
-            return false;
-        }
-    }
-    
     public void enqueue(T item) {
         Node oldlast = last;
         last = new Node();
