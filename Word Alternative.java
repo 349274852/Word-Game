@@ -10,50 +10,37 @@ public class Word extends Actor
 {
     private boolean inWorld = false;
     private String difficulty = "";
+    private String word = "";
     
-    public Word(String difficulty) {
+    public String getString() {
+        return word;
+    }
+    
+    public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
+    }
+    
+    public void setString(String string) {
+        word = string;
     }
     
     public void setInWorld(boolean flag) {
         inWorld = flag;
     }
     
-    public Queue<String> easyVocabulary(String difficulty){
+    public Queue<String> getVocabulary(String difficulty){
         Queue<String> easyStage = new Queue<String>();
         Reader reader = new Reader();
-        Scanner scanner = reader.getScanner("easy.txt");
+        Scanner scanner = reader.getScanner(difficulty + ".txt");
         while(scanner.hasNext()) {
             easyStage.enqueue(scanner.next());
         }
         
         return easyStage;
     }
-    
-    public Queue<String> mediumVocabulary(String difficulty){
-        Queue<String> mediumStage = new Queue<String>();
-        Reader reader = new Reader();
-        Scanner scanner = reader.getScanner("medium.txt");
-        while(scanner.hasNext()) {
-            mediumStage.enqueue(scanner.next());
-        }
-        
-        return mediumStage;
-    }
-        
-    public Queue<String> crazyVocabulary(String difficulty){
-        Queue<String> crazyStage = new Queue<String>();
-        Reader reader = new Reader();
-        Scanner scanner = reader.getScanner("crazy.txt");
-        while(scanner.hasNext()) {
-            crazyStage.enqueue(scanner.next());
-        }
-        
-        return crazyStage;
-    }
 
     public void act() 
     {
-        
+        setLocation(getX(), getY() + 1);
     }    
 }
