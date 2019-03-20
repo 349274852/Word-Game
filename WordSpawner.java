@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class WordSpawner extends Actor
 {
-    private int wordTimer = 0;
+    private int wordTimer = 100;
     MyWorld world;
     
     public WordSpawner(MyWorld theWorld) {
@@ -23,8 +23,14 @@ public class WordSpawner extends Actor
     {
         if(wordTimer > 0) wordTimer--;
         else {
-            wordTimer = 5000;
-            getWorld().addObject(world.getEasyVocabulary().dequeue(), Greenfoot.getRandomNumber(getWorld().getWidth()), 0);
+            wordTimer = 100;
+            int random = Greenfoot.getRandomNumber(getWorld().getWidth());
+            if(random < 50) {
+                random += 50;
+            }else if(random > getWorld().getWidth() - 50) {
+                random -= 50;
+            }
+            getWorld().addObject(world.getMediumVocabulary().dequeue(), random, 0);
         }
     }    
 }

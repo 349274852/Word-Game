@@ -12,6 +12,8 @@ public class Word extends Actor
     private String difficulty = "";
     private String word = "";
     
+    private int delay = 2;
+    
     public String getString() {
         return word;
     }
@@ -22,10 +24,7 @@ public class Word extends Actor
     
     public void setString(String string) {
         word = string;
-    }
-    
-    public void setInWorld(boolean flag) {
-        inWorld = flag;
+        setImage(new GreenfootImage(word, 20, Color.WHITE, Color.BLACK));
     }
     
     public Queue<String> getVocabulary(String difficulty){
@@ -41,6 +40,10 @@ public class Word extends Actor
 
     public void act() 
     {
-        setLocation(getX(), getY() + 1);
+        if(delay > 0) delay--;
+        else{
+            delay = 2;
+            setLocation(getX(), getY() + 1);
+        }
     }    
 }

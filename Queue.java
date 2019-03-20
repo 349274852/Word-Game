@@ -4,6 +4,8 @@ public class Queue<T> implements Iterable<T>
 {
     private Node first, last;
     
+    private int currentSize;
+    
     private class Node {
         private T item;
         private Node next;
@@ -23,6 +25,7 @@ public class Queue<T> implements Iterable<T>
         } else {
             oldlast.next = last;
         }
+        currentSize++;
     }
     
     public T dequeue() {
@@ -31,7 +34,18 @@ public class Queue<T> implements Iterable<T>
         if (isEmpty()) {
             last = null;
         }
+        currentSize--;
         return item;
+    }
+    
+    public int getSize() {
+        return currentSize;
+    }
+    
+    public void clear() {
+        while(!isEmpty()) {
+            dequeue();
+        }
     }
     
     
