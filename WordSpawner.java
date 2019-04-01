@@ -30,7 +30,15 @@ public class WordSpawner extends Actor
             }else if(random > getWorld().getWidth() - 50) {
                 random -= 50;
             }
-            getWorld().addObject(world.getMediumVocabulary().dequeue(), random, 0);
+            for(int i = 0; i < world.getEasyVocabulary().size(); i++) {
+                Word w = world.getEasyVocabulary().get(i);
+                if(world.getWordList().get(w.getFirstLetter()) == null) {
+                    world.getWordList().put(w.getFirstLetter(), w);
+                    getWorld().addObject(w, random, 0);
+                    world.getEasyVocabulary().remove(i);
+                    break;
+                }
+            }
         }
     }    
 }

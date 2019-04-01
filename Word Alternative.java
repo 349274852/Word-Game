@@ -8,7 +8,6 @@ import java.util.*;
  */
 public class Word extends Actor
 {
-    private boolean inWorld = false;
     private String difficulty = "";
     private String word = "";
     
@@ -16,6 +15,10 @@ public class Word extends Actor
     
     public String getString() {
         return word;
+    }
+    
+    public Character getFirstLetter() {
+        return word.charAt(0);
     }
     
     public void setDifficulty(String difficulty) {
