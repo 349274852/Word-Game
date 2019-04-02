@@ -51,9 +51,10 @@ public class TypingManager extends Actor
                 }
                 if(letter == curWord.charAt(0)) {
                     curWord = curWord.substring(1, curWord.length());
+                    Laser laser = new Laser();
+                    getWorld().addObject(laser, typedWord.getX(), getWorld().getHeight());
                     if(curWord.equals("")) {
                         typingWord = false;
-                        world.removeWord(typedWord);
                         typedWord = null;
                     }
                 }

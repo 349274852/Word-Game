@@ -56,6 +56,7 @@ public class MyWorld extends World
         while(scanner.hasNext()) {
             Word word = new Word();
             word.setString(scanner.next());
+            word.setupHealth();
             list.add(word);
         }
         

@@ -12,6 +12,7 @@ public class Word extends Actor
     private String word = "";
     
     private int delay = 2;
+    private int health = 0;
     
     public String getString() {
         return word;
@@ -23,6 +24,10 @@ public class Word extends Actor
     
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
+    }
+    
+    public void setupHealth() {
+        health = word.length() - 1;
     }
     
     public void setString(String string) {
@@ -47,6 +52,16 @@ public class Word extends Actor
         else{
             delay = 2;
             setLocation(getX(), getY() + 1);
+        }
+        Actor laser = getOneIntersectingObject(Laser.class);
+        if(laser != null) {
+            Laser shot = (Laser) laser;
+            health--;
+            getWorld().removeObject(shot);
+        }
+        if(health == 0) {
+            MyWorld w = (MyWorld) getWorld();
+            w.removeWord(this);
         }
     }    
 }
