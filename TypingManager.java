@@ -30,56 +30,45 @@ public class TypingManager extends Actor
             return;
         }
         //if the person isn't typing a word
-        if(!typingWord) {
-            String key = Greenfoot.getKey();
-            if(key != null) {
-                char letter;
-                if(key.length() == 1) {
-                    letter = key.charAt(0);
-                }else{
-                    letter = '-';
-                }
+        String key = Greenfoot.getKey();
+        if(key != null) {
+           char letter;
+           if(key.length() == 1) {
+               letter = key.charAt(0);
+           }else{
+               letter = '-';
+           }
+           if(!typingWord) {
                 if(world.getWordList().get(letter) != null) {
-                    Word word = world.getWordList().get(letter);
-                    typedWord = word;
-                    String str = word.getString();
-                    str = str.substring(1, str.length());
-                    curWord = str;
-                    typingWord = true;
-                    Laser laser = new Laser();
-                    getWorld().addObject(laser, typedWord.getX(), getWorld().getHeight());
-                    world.getShooter().setLockedOn(typedWord);
+                   Word word = world.getWordList().get(letter);
+                   typedWord = word;
+                   String str = word.getString();
+                   str = str.substring(1, str.length());
+                   curWord = str;
+                   typingWord = true;
+                   Laser laser = new Laser();
+                   getWorld().addObject(laser, typedWord.getX(), getWorld().getHeight());
+                   world.getShooter().setLockedOn(typedWord);
                 }
-                delay = defDelay;
-            }
-        //if the person is typing a word
-        }else{
-            String key = Greenfoot.getKey();
-            if(key != null) {
-                char letter;
-                if(key.length() == 1) {
-                    letter = key.charAt(0);
-                }else{
-                    letter = '-';
-                }
+           }else{
                 //checks if the key they pressed matches the first letter of the word typing
-                if(letter == curWord.charAt(0)) {
-                    //cuts the word and removes the first letter, replacing with 2nd
-                    curWord = curWord.substring(1, curWord.length());
-                    Laser laser = new Laser();
-                    getWorld().addObject(laser, typedWord.getX(), getWorld().getHeight());
-                    world.getShooter().setLockedOn(typedWord);
-                    //checks if they're finished typing the word
-                    if(curWord.equals("")) {
-                        typingWord = false;
-                        typedWord = null;
-                        world.getShooter().setLockedOn(null);
-                    }
-                }
-                delay = defDelay;
-            }
+               if(letter == curWord.charAt(0)) {
+                   //cuts the word and removes the first letter, replacing with 2nd
+                   curWord = curWord.substring(1, curWord.length());
+                   Laser laser = new Laser();
+                   getWorld().addObject(laser, typedWord.getX(), getWorld().getHeight());
+                   world.getShooter().setLockedOn(typedWord);
+                   //checks if they're finished typing the word
+                   if(curWord.equals("")) {
+                       typingWord = false;
+                       typedWord = null;
+                       world.getShooter().setLockedOn(null);
+                   }
+               }
+           }
+           delay = defDelay;
         }
-    }    
+    }  
     
     public void shootLaser() {
         int x = typedWord.getX();

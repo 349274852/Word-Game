@@ -12,16 +12,19 @@ public class MyWorld extends World
     private ArrayList<Word> easy = new ArrayList<Word>();
     private ArrayList<Word> medium = new ArrayList<Word>();
     
+    private String difficulty = "easy";
+    
     public HashMap<Character, Word> words = new HashMap<Character, Word>();
     private Shooter shooter;
     /**
      * Constructor for objects of class MyWorld.
      * 
      */
-    public MyWorld()
+    public MyWorld(String difficulty)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(500, 600, 1); 
+        this.difficulty = difficulty;
         easy = setupVocabulary("easy");
         medium = setupVocabulary("medium");
         for(char ch = 'a'; ch <= 'z'; ++ch) {
@@ -45,6 +48,12 @@ public class MyWorld extends World
     
     public ArrayList<Word> getMediumVocabulary() {
         return medium;
+    }
+    
+    public ArrayList<Word> getDifficultyVocabulary() {
+        if(difficulty.equals("easy")) return easy;
+        if(difficulty.equals("medium")) return medium;
+        return easy;
     }
     
     public HashMap<Character, Word> getWordList() {

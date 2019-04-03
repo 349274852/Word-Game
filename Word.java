@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.*;
 /**
  * Write a description of class Word here.
  * 
@@ -8,398 +8,67 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Word extends Actor
 {
-    private boolean inWorld = false;
     private String difficulty = "";
+    private String word = "";
     
-    public Word(String difficulty) {
+    String chopped = "";
+    
+    private int delay = 2;
+    private int health = 0;
+    
+    public String getString() {
+        return word;
+    }
+    
+    public Character getFirstLetter() {
+        return word.charAt(0);
+    }
+    
+    public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
     }
     
-    public void setInWorld(boolean flag) {
-        inWorld = flag;
+    public void setupHealth() {
+        health = word.length();
     }
     
-    public Queue<String> easyVocabulary(String difficulty){
+    public void setString(String string) {
+        word = string;
+        chopped = string;
+        setImage(new GreenfootImage(word, 20, Color.BLACK, Color.WHITE));
+    }
+    
+    public Queue<String> getVocabulary(String difficulty){
         Queue<String> easyStage = new Queue<String>();
-        easyStage.enqueue("account");
-        easyStage.enqueue("accountant");
-        easyStage.enqueue("acoustic");
-        easyStage.enqueue("act");
-        easyStage.enqueue("action");
-        easyStage.enqueue("active");
-        easyStage.enqueue("activity");
-        easyStage.enqueue("actor");
-        easyStage.enqueue("actress");
-        easyStage.enqueue("address");
-        easyStage.enqueue("adult");
-        easyStage.enqueue("advice");
-        easyStage.enqueue("africa");
-        easyStage.enqueue("afternoon");
-        easyStage.enqueue("age");
-        easyStage.enqueue("agenda");
-        easyStage.enqueue("air");
-        easyStage.enqueue("airbus");
-        easyStage.enqueue("airmail");
-        easyStage.enqueue("alarm");
-        easyStage.enqueue("alibi");
-        easyStage.enqueue("alley");
-        easyStage.enqueue("alloy");
-        easyStage.enqueue("almanac");
-        easyStage.enqueue("alto");
-        easyStage.enqueue("amount");
-        easyStage.enqueue("anatomy");
-        easyStage.enqueue("anger");
-        easyStage.enqueue("angle");
-        easyStage.enqueue("angora");
-        easyStage.enqueue("animal");
-        easyStage.enqueue("anime");
-        easyStage.enqueue("ankle");
-        easyStage.enqueue("answer");
-        easyStage.enqueue("ant");
-        easyStage.enqueue("appeal");
-        easyStage.enqueue("apple");
-        easyStage.enqueue("april");
-        easyStage.enqueue("arch");
-        easyStage.enqueue("archer");
-        easyStage.enqueue("area");
-        easyStage.enqueue("aries");
-        easyStage.enqueue("arm");
-        easyStage.enqueue("army");
-        easyStage.enqueue("arrow");
-        easyStage.enqueue("art");
-        easyStage.enqueue("ash");
-        easyStage.enqueue("asia");
-        easyStage.enqueue("atm");
-        easyStage.enqueue("atom");
-        easyStage.enqueue("attack");
-        easyStage.enqueue("attempt");
-        easyStage.enqueue("attic");
-        easyStage.enqueue("august");
-        easyStage.enqueue("aunt");
-        easyStage.enqueue("author");
-        easyStage.enqueue("avenue");
-        easyStage.enqueue("babies");
-        easyStage.enqueue("baboon");
-        easyStage.enqueue("baby");
-        easyStage.enqueue("back");
-        easyStage.enqueue("bacon");
-        easyStage.enqueue("badge");
-        easyStage.enqueue("badger");
-        easyStage.enqueue("bag");
-        easyStage.enqueue("bagel");
-        easyStage.enqueue("bail");
-        easyStage.enqueue("bait");
-        easyStage.enqueue("baker");
-        easyStage.enqueue("ball");
-        easyStage.enqueue("bamboo");
-        easyStage.enqueue("banana");
-        easyStage.enqueue("band");
-        easyStage.enqueue("banjo");
-        easyStage.enqueue("bank");
-        easyStage.enqueue("bankbook");
-        easyStage.enqueue("banker");
-        easyStage.enqueue("bar");
-        easyStage.enqueue("barbara");
-        easyStage.enqueue("barber");
-        easyStage.enqueue("barge");
-        easyStage.enqueue("base");
-        easyStage.enqueue("basin");
-        easyStage.enqueue("basket");
-        easyStage.enqueue("bass");
-        easyStage.enqueue("bat");
-        easyStage.enqueue("bath");
-        easyStage.enqueue("bathroom");
-        easyStage.enqueue("bathtub");
-        easyStage.enqueue("battle");
-        easyStage.enqueue("bay");
-        easyStage.enqueue("beach");
-        easyStage.enqueue("bead");
-        easyStage.enqueue("be");
-        easyStage.enqueue("bean");
-        easyStage.enqueue("bear");
-        easyStage.enqueue("beast");
-        easyStage.enqueue("beat");
-        easyStage.enqueue("bed");
-        easyStage.enqueue("bee");
-        easyStage.enqueue("beech");
-        easyStage.enqueue("beef");
-        easyStage.enqueue("beer");
-        easyStage.enqueue("beet");
-        easyStage.enqueue("bell");
-        easyStage.enqueue("belt");
-        easyStage.enqueue("bench");
-        easyStage.enqueue("beret");
-        easyStage.enqueue("berry");
-        easyStage.enqueue("betty");
-        easyStage.enqueue("bike");
-        easyStage.enqueue("bill");
-        easyStage.enqueue("birch");
-        easyStage.enqueue("birth");
-        easyStage.enqueue("bird");
-        easyStage.enqueue("bit");
-        easyStage.enqueue("bite");
-        easyStage.enqueue("black");
-        easyStage.enqueue("blade");
-        easyStage.enqueue("block");
-        easyStage.enqueue("blood");
-        easyStage.enqueue("blouse");
-        easyStage.enqueue("blow");
-        easyStage.enqueue("blue");
-        easyStage.enqueue("board");
-        easyStage.enqueue("boat");
-        easyStage.enqueue("bobcat");
-        easyStage.enqueue("body");
-        easyStage.enqueue("bolt");
-        easyStage.enqueue("bomb");
-        easyStage.enqueue("bomber");
-        easyStage.enqueue("bone");
-        easyStage.enqueue("bongo");
-        easyStage.enqueue("bonsai");
-        easyStage.enqueue("book");
-        easyStage.enqueue("boot");
-        easyStage.enqueue("border");
-        easyStage.enqueue("botany");
-        easyStage.enqueue("bow");
-        easyStage.enqueue("bowl");
-        easyStage.enqueue("box");
-        easyStage.enqueue("boy");
-        easyStage.enqueue("bra");
-        easyStage.enqueue("brace");
-        easyStage.enqueue("brain");
-        easyStage.enqueue("brake");
-        easyStage.enqueue("brand");
-        easyStage.enqueue("brass");
-        easyStage.enqueue("bread");
-        easyStage.enqueue("break");
-        easyStage.enqueue("brian");
-        easyStage.enqueue("brick");
-        easyStage.enqueue("bridge");
-        easyStage.enqueue("brow");
-        easyStage.enqueue("brown");
-        easyStage.enqueue("brush");
-        easyStage.enqueue("bugle");
-        easyStage.enqueue("bulb");
-        easyStage.enqueue("bull");
-        easyStage.enqueue("bun");
-        easyStage.enqueue("burma");
-        easyStage.enqueue("burn");
-        easyStage.enqueue("burst");
-        easyStage.enqueue("bus");
-        easyStage.enqueue("bush");
-        easyStage.enqueue("");
-        easyStage.enqueue("");
-        easyStage.enqueue("");
-        easyStage.enqueue("");
-        easyStage.enqueue("");
-        easyStage.enqueue("");
-        easyStage.enqueue("");
-        easyStage.enqueue("");
-        easyStage.enqueue("");
-        easyStage.enqueue("");
-        easyStage.enqueue("");
-        easyStage.enqueue("");
-        easyStage.enqueue("");
-        easyStage.enqueue("");
-        easyStage.enqueue("");
-        easyStage.enqueue("");
-        easyStage.enqueue("");
+        Reader reader = new Reader();
+        Scanner scanner = reader.getScanner(difficulty + ".txt");
+        while(scanner.hasNext()) {
+            easyStage.enqueue(scanner.next());
+        }
         
-        
-        
-    }
-    
-    public Queue<String> mediumVocabulary(String difficulty){
-        Queue<String> mediumStage = new Queue<String>();
-        mediumStage.enqueue("aardvark");
-        mediumStage.enqueue("accelerator");
-        mediumStage.enqueue("accordion");
-        mediumStage.enqueue("acrylic");
-        mediumStage.enqueue("adapter");
-        mediumStage.enqueue("addition");
-        mediumStage.enqueue("advantage");
-        mediumStage.enqueue("aftermath");
-        mediumStage.enqueue("aftershave");
-        mediumStage.enqueue("agreement");
-        mediumStage.enqueue("airplane");
-        mediumStage.enqueue("airport");
-        mediumStage.enqueue("airship");
-        mediumStage.enqueue("alcohol");
-        mediumStage.enqueue("algebra");
-        mediumStage.enqueue("algeria");
-        mediumStage.enqueue("alligator");
-        mediumStage.enqueue("alphabet");
-        mediumStage.enqueue("america");
-        mediumStage.enqueue("amusement");
-        mediumStage.enqueue("anteater");
-        mediumStage.enqueue("antelope");
-        mediumStage.enqueue("anthony");
-        mediumStage.enqueue("apartment");
-        mediumStage.enqueue("apology");
-        mediumStage.enqueue("apparatus");
-        mediumStage.enqueue("apparel");
-        mediumStage.enqueue("appendix");
-        mediumStage.enqueue("approval");
-        mediumStage.enqueue("argument");
-        mediumStage.enqueue("armchair");
-        mediumStage.enqueue("armenian");
-        mediumStage.enqueue("ashtray");
-        mediumStage.enqueue("asparagus");
-        mediumStage.enqueue("asphalt");
-        mediumStage.enqueue("athlete");
-        mediumStage.enqueue("attention");
-        mediumStage.enqueue("attraction");
-        mediumStage.enqueue("authority");
-        mediumStage.enqueue("backbone");
-        mediumStage.enqueue("bagpipe");
-        mediumStage.enqueue("bakery");
-        mediumStage.enqueue("balance");
-        mediumStage.enqueue("balinese");
-        mediumStage.enqueue("balloon");
-        mediumStage.enqueue("bandana");
-        mediumStage.enqueue("bangle");
-        mediumStage.enqueue("baritone");
-        mediumStage.enqueue("baseball");
-        mediumStage.enqueue("basement");
-        mediumStage.enqueue("basketball");
-        mediumStage.enqueue("bassoon");
-        mediumStage.enqueue("battery");
-        mediumStage.enqueue("beard");
-        mediumStage.enqueue("beauty");
-        mediumStage.enqueue("beaver");
-        mediumStage.enqueue("bedroom");
-        mediumStage.enqueue("beetle");
-        mediumStage.enqueue("beggar");
-        mediumStage.enqueue("beginner");
-        mediumStage.enqueue("begonia");
-        mediumStage.enqueue("behavior");
-        mediumStage.enqueue("belgian");
-        mediumStage.enqueue("belief");
-        mediumStage.enqueue("believe");
-        mediumStage.enqueue("bengal");
-        mediumStage.enqueue("bestseller");
-        mediumStage.enqueue("bicycle");
-        mediumStage.enqueue("billboard");
-        mediumStage.enqueue("biology");
-        mediumStage.enqueue("biplane");
-        mediumStage.enqueue("birthday");
-        mediumStage.enqueue("bladder");
-        mediumStage.enqueue("blanket");
-        mediumStage.enqueue("blinker");
-        mediumStage.enqueue("blizzard");
-        mediumStage.enqueue("blowgun");
-        mediumStage.enqueue("bookcase");
-        mediumStage.enqueue("booklet");
-        mediumStage.enqueue("bottle");
-        mediumStage.enqueue("boundary");
-        mediumStage.enqueue("bowling");
-        mediumStage.enqueue("bracket");
-        mediumStage.enqueue("branch");
-        mediumStage.enqueue("brandy");
-        mediumStage.enqueue("brazil");
-        mediumStage.enqueue("breakfast");
-        mediumStage.enqueue("breath");
-        mediumStage.enqueue("british");
-        mediumStage.enqueue("broccoli");
-        mediumStage.enqueue("brochure");
-        mediumStage.enqueue("broker");
-        mediumStage.enqueue("bronze");
-        mediumStage.enqueue("brother");
-        mediumStage.enqueue("brother-in-law");
-        mediumStage.enqueue("bubble");
-        mediumStage.enqueue("bucket");
-        mediumStage.enqueue("budget");
-        mediumStage.enqueue("buffer");
-        mediumStage.enqueue("buffet");
-        mediumStage.enqueue("building");
-        mediumStage.enqueue("bulldozer");
-        mediumStage.enqueue("bumper");
-        mediumStage.enqueue("burglar");
-        mediumStage.enqueue("business");
-        mediumStage.enqueue("butane");
-        mediumStage.enqueue("butcher");
-        mediumStage.enqueue("butter");
-        mediumStage.enqueue("button");
-        mediumStage.enqueue("buzzard");
-        mediumStage.enqueue("");
-        mediumStage.enqueue("");
-        mediumStage.enqueue("");
-        mediumStage.enqueue("");
-        mediumStage.enqueue("");
-        mediumStage.enqueue("");
-        mediumStage.enqueue("");
-        
-        
-    }
-        
-    public Queue<String> crazyVocabulary(String difficulty){
-        Queue<String> crazyStage = new Queue<String>();
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("");
-        crazyStage.enqueue("bibliography");
-        crazyStage.enqueue("beautician");
-        crazyStage.enqueue("barometer");
-        crazyStage.enqueue("bangladesh");
-        crazyStage.enqueue("authorization");
-        crazyStage.enqueue("authorisation");
-        crazyStage.enqueue("australian");
-        crazyStage.enqueue("australia");
-        crazyStage.enqueue("astronomy");
-        crazyStage.enqueue("asterisk");
-        crazyStage.enqueue("armadillo");
-        crazyStage.enqueue("arithmetic");
-        crazyStage.enqueue("argentina");
-        crazyStage.enqueue("architecture");
-        crazyStage.enqueue("archeology");
-        crazyStage.enqueue("archaeology");
-        crazyStage.enqueue("aquarius");
-        crazyStage.enqueue("appliance");
-        crazyStage.enqueue("anthropology");
-        crazyStage.enqueue("antarctica");
-        crazyStage.enqueue("anethesiologist");
-        crazyStage.enqueue("ambulance");
-        crazyStage.enqueue("aluminium");
-        crazyStage.enqueue("aluminum");
-        crazyStage.enqueue("albatross");
-        crazyStage.enqueue("abyssinian");
-        crazyStage.enqueue("acknowledgement");
-        crazyStage.enqueue("adjustment");
-        crazyStage.enqueue("advertisement");
-        crazyStage.enqueue("afghanistan");
-        crazyStage.enqueue("afterthought");
-        
+        return easyStage;
     }
 
     public void act() 
     {
-        
+        //moves the word down the screen
+        if(delay > 0) delay--;
+        else{
+            delay = 2;
+            setLocation(getX(), getY() + 1);
+        }
+        //checks when a laser hits the word
+        Actor laser = getOneIntersectingObject(Laser.class);
+        if(laser != null) {
+            Laser shot = (Laser) laser;
+            health--;
+            getWorld().removeObject(shot);
+            chopped = chopped.substring(1, chopped.length());
+            setImage(new GreenfootImage(chopped, 20, Color.RED, Color.WHITE));
+        }
+        if(health == 0) {
+            MyWorld w = (MyWorld) getWorld();
+            w.removeWord(this);
+        }
     }    
 }
