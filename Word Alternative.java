@@ -11,6 +11,8 @@ public class Word extends Actor
     private String difficulty = "";
     private String word = "";
     
+    String chopped = "";
+    
     private int delay = 2;
     private int health = 0;
     
@@ -27,12 +29,13 @@ public class Word extends Actor
     }
     
     public void setupHealth() {
-        health = word.length() - 1;
+        health = word.length();
     }
     
     public void setString(String string) {
         word = string;
-        setImage(new GreenfootImage(word, 20, Color.WHITE, Color.BLACK));
+        chopped = string;
+        setImage(new GreenfootImage(word, 20, Color.BLACK, Color.WHITE));
     }
     
     public Queue<String> getVocabulary(String difficulty){
@@ -48,16 +51,20 @@ public class Word extends Actor
 
     public void act() 
     {
+        //moves the word down the screen
         if(delay > 0) delay--;
         else{
             delay = 2;
             setLocation(getX(), getY() + 1);
         }
+        //checks when a laser hits the word
         Actor laser = getOneIntersectingObject(Laser.class);
         if(laser != null) {
             Laser shot = (Laser) laser;
             health--;
             getWorld().removeObject(shot);
+            chopped = chopped.substring(1, chopped.length());
+            setImage(new GreenfootImage(chopped, 20, Color.RED, Color.WHITE));
         }
         if(health == 0) {
             MyWorld w = (MyWorld) getWorld();

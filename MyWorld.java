@@ -13,6 +13,7 @@ public class MyWorld extends World
     private ArrayList<Word> medium = new ArrayList<Word>();
     
     public HashMap<Character, Word> words = new HashMap<Character, Word>();
+    private Shooter shooter;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -30,6 +31,12 @@ public class MyWorld extends World
         addObject(wordspawner, 0, 0);
         TypingManager typing = new TypingManager(this);
         addObject(typing, 0, 0);
+        shooter = new Shooter();
+        addObject(shooter, getWidth() / 2, getHeight());
+    }
+    
+    public Shooter getShooter() {
+        return shooter;
     }
     
     public ArrayList<Word> getEasyVocabulary() {

@@ -13,6 +13,9 @@ public class TypingManager extends Actor
     Word typedWord;
     MyWorld world;
     
+    int delay = 2;
+    int defDelay = 2;
+    
     public TypingManager(MyWorld world) {
         this.world = world;
     }
@@ -22,6 +25,11 @@ public class TypingManager extends Actor
      */
     public void act() 
     {
+        if(delay > 0) {
+            delay--;
+            return;
+        }
+        //if the person isn't typing a word
         if(!typingWord) {
             String key = Greenfoot.getKey();
             if(key != null) {
@@ -38,8 +46,13 @@ public class TypingManager extends Actor
                     str = str.substring(1, str.length());
                     curWord = str;
                     typingWord = true;
+                    Laser laser = new Laser();
+                    getWorld().addObject(laser, typedWord.getX(), getWorld().getHeight());
+                    world.getShooter().setLockedOn(typedWord);
                 }
+                delay = defDelay;
             }
+        //if the person is typing a word
         }else{
             String key = Greenfoot.getKey();
             if(key != null) {
@@ -49,16 +62,28 @@ public class TypingManager extends Actor
                 }else{
                     letter = '-';
                 }
+                //checks if the key they pressed matches the first letter of the word typing
                 if(letter == curWord.charAt(0)) {
+                    //cuts the word and removes the first letter, replacing with 2nd
                     curWord = curWord.substring(1, curWord.length());
                     Laser laser = new Laser();
                     getWorld().addObject(laser, typedWord.getX(), getWorld().getHeight());
+                    world.getShooter().setLockedOn(typedWord);
+                    //checks if they're finished typing the word
                     if(curWord.equals("")) {
                         typingWord = false;
                         typedWord = null;
+                        world.getShooter().setLockedOn(null);
                     }
                 }
+                delay = defDelay;
             }
         }
     }    
+    
+    public void shootLaser() {
+        int x = typedWord.getX();
+        int y = typedWord.getY();
+        
+    }
 }
