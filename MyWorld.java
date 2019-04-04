@@ -9,8 +9,7 @@ import java.util.*;
 public class MyWorld extends World
 {
 
-    private ArrayList<Word> easy = new ArrayList<Word>();
-    private ArrayList<Word> medium = new ArrayList<Word>();
+    private ArrayList<Word> vocabulary = new ArrayList<Word>();
     
     private String difficulty = "easy";
     
@@ -20,14 +19,12 @@ public class MyWorld extends World
      * Constructor for objects of class MyWorld.
      * 
      */
-     //type "easy" or "medium" when trying to run game
     public MyWorld(String difficulty)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(500, 600, 1); 
         this.difficulty = difficulty;
-        easy = setupVocabulary("easy");
-        medium = setupVocabulary("medium");
+        vocabulary = setupVocabulary(difficulty);
         for(char ch = 'a'; ch <= 'z'; ++ch) {
             words.put(ch, null);
         }
@@ -43,18 +40,8 @@ public class MyWorld extends World
         return shooter;
     }
     
-    public ArrayList<Word> getEasyVocabulary() {
-        return easy;
-    }
-    
-    public ArrayList<Word> getMediumVocabulary() {
-        return medium;
-    }
-    
     public ArrayList<Word> getDifficultyVocabulary() {
-        if(difficulty.equals("easy")) return easy;
-        if(difficulty.equals("medium")) return medium;
-        return easy;
+        return vocabulary;
     }
     
     public HashMap<Character, Word> getWordList() {

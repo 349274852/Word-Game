@@ -48,7 +48,7 @@ public class TypingManager extends Actor
                    typingWord = true;
                    Laser laser = new Laser();
                    getWorld().addObject(laser, typedWord.getX(), getWorld().getHeight());
-                   world.getShooter().setLockedOn(typedWord);
+                   typedWord.chopWord();
                 }
            }else{
                 //checks if the key they pressed matches the first letter of the word typing
@@ -57,7 +57,7 @@ public class TypingManager extends Actor
                    curWord = curWord.substring(1, curWord.length());
                    Laser laser = new Laser();
                    getWorld().addObject(laser, typedWord.getX(), getWorld().getHeight());
-                   world.getShooter().setLockedOn(typedWord);
+                   typedWord.chopWord();
                    //checks if they're finished typing the word
                    if(curWord.equals("")) {
                        typingWord = false;

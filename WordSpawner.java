@@ -39,7 +39,9 @@ public class WordSpawner extends Actor
                 Word w = world.getDifficultyVocabulary().get(i);
                 if(world.getWordList().get(w.getFirstLetter()) == null) {
                     world.getWordList().put(w.getFirstLetter(), w);
-                    getWorld().addObject(w, random, 0);
+                    getWorld().addObject(w, random, 30);
+                    TextImage img = new TextImage(w);
+                    getWorld().addObject(img, 0, 0);
                     world.getDifficultyVocabulary().remove(i);
                     break;
                 }

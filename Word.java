@@ -16,8 +16,18 @@ public class Word extends Actor
     private int delay = 2;
     private int health = 0;
     
+    private GreenfootImage ship;
+    
+    public Word() {
+        ship = new GreenfootImage("enemy.png");
+    }
+    
     public String getString() {
         return word;
+    }
+    
+    public boolean inWorld() {
+        return getWorld() != null;
     }
     
     public Character getFirstLetter() {
@@ -35,7 +45,16 @@ public class Word extends Actor
     public void setString(String string) {
         word = string;
         chopped = string;
-        setImage(new GreenfootImage(word, 20, Color.BLACK, Color.WHITE));
+        setImage(new GreenfootImage(word, 20, Color.WHITE, Color.BLACK));
+    }
+    
+    public void chopWord() {
+        if(chopped.length() == 1) {
+            chopped = "";
+        }else{
+            chopped = chopped.substring(1, chopped.length());
+        }
+        setImage(new GreenfootImage(chopped, 20, Color.RED, Color.BLACK));
     }
     
     public Queue<String> getVocabulary(String difficulty){
@@ -63,8 +82,6 @@ public class Word extends Actor
             Laser shot = (Laser) laser;
             health--;
             getWorld().removeObject(shot);
-            chopped = chopped.substring(1, chopped.length());
-            setImage(new GreenfootImage(chopped, 20, Color.RED, Color.WHITE));
         }
         if(health == 0) {
             MyWorld w = (MyWorld) getWorld();
