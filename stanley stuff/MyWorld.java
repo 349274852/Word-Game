@@ -47,27 +47,6 @@ public class MyWorld extends World
         return typing;
     }
     
-    /**
-     * Activates or deactivates the fast shooting power up
-     */
-    public void setLaserPowerUp(boolean flag) {
-        laserPowerUp = flag;
-    }
-    
-    /**
-     * Returns the laser speed
-     */
-    public int getLaserSpeed() {
-        return laserSpeed;
-    }
-    
-    /**
-     * Sets laser speed to the specified value
-     */
-    public void setLaserSpeed(int speed) {
-        laserSpeed = speed;
-    }
-    
     public Shooter getShooter() {
         return shooter;
     }
@@ -90,8 +69,9 @@ public class MyWorld extends World
      * Removes a word from the world and the HashMap
      */
     public void removeWord(Word w) {
-        getWordList().remove(w.getFirstLetter());
-        getWordList().put(w.getFirstLetter(), null);
+        if(getWordList().get(w.getFirstLetter()) == w) {
+            getWordList().put(w.getFirstLetter(), null);
+        }
         removeObject(w);
     }
     
@@ -100,11 +80,10 @@ public class MyWorld extends World
      */
     public ArrayList<Word> setupVocabulary(String difficulty) {
         Reader reader = new Reader();
-        Scanner scanner = reader.getScanner(difficulty + ".txt");
+        Scanner scanner = reader.getScanner("allwords.txt");
         ArrayList<Word> list = new ArrayList<Word>();
         while(scanner.hasNext()) {
-            String str = scanner.next();
-            System.out.println(str);
+            String str = scanner.next().toLowerCase();
             Word word = new Word();
             word.setString(str);
             word.setupHealth();
@@ -120,16 +99,5 @@ public class MyWorld extends World
         }
         
         return number;
-    }
-    
-    public void act() {
-        if(laserPowerUp) {
-            if(laserTimer > 0) laserTimer--;
-            else{
-                laserPowerUp = false;
-                setLaserSpeed(5);
-                laserTimer = laserTimerDef;
-            }
-        }
     }
 }

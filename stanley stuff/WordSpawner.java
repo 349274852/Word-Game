@@ -12,6 +12,8 @@ public class WordSpawner extends Actor
     private int wordTimer = 100;
     private int wordTimerDef = 100;
     
+    private int maxCharacters = 5;
+    
     private int powerupTimer = 50;
     private int powerupTimerDef = 50;
     MyWorld world;
@@ -49,7 +51,7 @@ public class WordSpawner extends Actor
             for(int i = 0; i < world.getDifficultyVocabulary().size(); i++) {
                 Word w = world.getDifficultyVocabulary().get(i);
                 //Checks if there is already a word with the same first letter spawned
-                if(world.getWordList().get(w.getFirstLetter()) == null) {
+                if(world.getWordList().get(w.getFirstLetter()) == null && w.getString().length() <= maxCharacters) {
                     spawnWord(w, random, 30);
                     world.getDifficultyVocabulary().remove(i);
                     break;

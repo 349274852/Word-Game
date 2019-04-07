@@ -64,7 +64,6 @@ public class TypingManager extends Actor
                    typedWord.chopWord();
                    //Checks if they're finished typing the word
                    if(curWord.equals("")) {
-                       world.getWordList().remove(typedWord.getFirstLetter());
                        world.getWordList().put(typedWord.getFirstLetter(), null);
                        typedWord = null;
                        world.getShooter().setLockedOn(null);
@@ -76,7 +75,7 @@ public class TypingManager extends Actor
     }
     
     public void fire() {
-        Laser laser = new Laser(typedWord, world.getLaserSpeed());
+        Laser laser = new Laser(typedWord);
         getWorld().addObject(laser, typedWord.getX(), getWorld().getHeight());
     }
 }

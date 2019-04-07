@@ -10,10 +10,10 @@ public class Laser extends Actor
 {
     Word directed;
     
-    private int speed;
+    private int speed = 5;
     private Shooter s;
     
-    public Laser(Word w, int speed) {
+    public Laser(Word w) {
         this.directed = w;
         this.speed = speed;
         this.s = s;
