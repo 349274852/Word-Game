@@ -71,19 +71,23 @@ public class Word extends Actor
     public void setString(String string) {
         word = string;
         chopped = string;
-        setImage(new GreenfootImage(word, 20, Color.WHITE, Color.BLACK));
+        GreenfootImage img = new GreenfootImage(word, 20, Color.WHITE, Color.BLACK);
+        img.setTransparency(195);
+        setImage(img);
     }
     
     /**
      * Removes the first letter of the word
      */
     public void chopWord() {
-        if(chopped.length() == 1) {
+        if(chopped.length() <= 1) {
             chopped = "";
         }else{
             chopped = chopped.substring(1, chopped.length());
         }
-        setImage(new GreenfootImage(chopped, 20, Color.RED, Color.BLACK));
+        GreenfootImage img = new GreenfootImage(chopped, 20, Color.RED, Color.BLACK);
+        img.setTransparency(245);
+        setImage(img);
     }
 
     public void act() 
@@ -114,17 +118,23 @@ public class Word extends Actor
         }
     }
     
+    /**
+     * Activates the given power up
+     */
     public void activatePowerUp(String powerupType) {
         MyWorld w = (MyWorld) getWorld();
         switch(powerupType){
             case "nuclearstrike":
                 for(Character c : w.getWordList().keySet()) {
-                    w.removeObject(w.getWordList().get(c));
+                    w.getWordList().put(c, null);
                 }
-                break;
-            case "fastshooting":
-                w.setLaserPowerUp(true);
-                w.setLaserSpeed(10);
+                for(Actor a : w.getObjects(Word.class)) {
+                    w.removeObject(a);
+                }
+                for(Laser a : w.getObjects(Laser.class)) {
+                    w.removeObject(a);
+                }
+                w.getTypingManager().setTypedWord(null);
                 break;
         }
         w.removeWord(this);

@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.*;
 
 /**
  * Write a description of class WordSpawner here.
@@ -15,10 +16,17 @@ public class WordSpawner extends Actor
     private int powerupTimerDef = 50;
     MyWorld world;
     
-    private String[] powerups = {"nuclearstrike", "fastshooting", "slowenemy"};
+    private HashMap<String, Integer> powerups = new HashMap<String, Integer>();
+    
+    private String[] powerupsList = {"nuclearstrike", "fastshooting", "slowenemy"};
+    
+    private String powerup = "";
     
     public WordSpawner(MyWorld theWorld) {
         world = theWorld;
+        powerups.put("nuclearstrike", 0);
+        powerups.put("fastshooting", 0);
+        powerups.put("slowenemy", 0);
     }
     
     /**
@@ -50,25 +58,34 @@ public class WordSpawner extends Actor
         }
         if(powerupTimer > 0) powerupTimer--;
         else {
-            String up = getRandomPowerup();
-            //something wrong here
-            if(world.getWordList().get(up.charAt(0)) == null) {
-                powerupTimer = powerupTimerDef;
+            if(powerup.equals("")) {
+                powerup = "nuclearstrike";
+            }
+            if(world.getWordList().get(powerup.charAt(0)) == null) {
+                //something wrong here
                 int random = generateRandomNumber(world.getWidth());
                 Word w = new Word();
-                w.setString(up);
+                w.setString(powerup);
                 w.setPowerUp(true);
                 w.setupHealth();
                 spawnWord(w, random, 30);
+                powerup = "";
             }
+            powerupTimer = powerupTimerDef;
         }
-    }    
-    
-    public String getRandomPowerup() {
-        int number = Greenfoot.getRandomNumber(powerups.length);
-        return powerups[number];
     }
     
+    /**
+     * Returns a random power up
+     */
+    public String getRandomPowerup() {
+        int number = Greenfoot.getRandomNumber(powerupsList.length);
+        return powerupsList[number];
+    }
+    
+    /**
+     * Spawns a given word in the specified x-y location
+     */
     public void spawnWord(Word w, int x, int y) {
         world.getWordList().put(w.getFirstLetter(), w);
         getWorld().addObject(w, x, y);

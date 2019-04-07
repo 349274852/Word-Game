@@ -19,6 +19,11 @@ public class TypingManager extends Actor
     public TypingManager(MyWorld world) {
         this.world = world;
     }
+    
+    public void setTypedWord(Word w) {
+        typedWord = w;
+    }
+    
     /**
      * Act - do whatever the TypingManager wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -29,10 +34,11 @@ public class TypingManager extends Actor
             delay--;
             return;
         }
-        //If the person isn't typing a word
+        typingWord = typedWord != null;
         String key = Greenfoot.getKey();
         if(key != null) {
            char letter;
+           //Checks if key pressed is a singular letter, and not 'backspace' or 'enter', etc.
            if(key.length() == 1) {
                letter = key.charAt(0);
            }else{
@@ -46,9 +52,7 @@ public class TypingManager extends Actor
                    String str = word.getString();
                    str = str.substring(1, str.length());
                    curWord = str;
-                   typingWord = true;
-                   Laser laser = new Laser(typedWord, world.getLaserSpeed());
-                   getWorld().addObject(laser, typedWord.getX(), getWorld().getHeight());
+                   fire();
                    typedWord.chopWord();
                 }
            }else{
@@ -56,12 +60,12 @@ public class TypingManager extends Actor
                if(letter == curWord.charAt(0)) {
                    //Cuts the word and removes the first letter, replacing with 2nd
                    curWord = curWord.substring(1, curWord.length());
-                   Laser laser = new Laser(typedWord, world.getLaserSpeed());
-                   getWorld().addObject(laser, typedWord.getX(), getWorld().getHeight());
+                   fire();
                    typedWord.chopWord();
                    //Checks if they're finished typing the word
                    if(curWord.equals("")) {
-                       typingWord = false;
+                       world.getWordList().remove(typedWord.getFirstLetter());
+                       world.getWordList().put(typedWord.getFirstLetter(), null);
                        typedWord = null;
                        world.getShooter().setLockedOn(null);
                    }
@@ -69,5 +73,10 @@ public class TypingManager extends Actor
            }
            delay = defDelay;
         }
+    }
+    
+    public void fire() {
+        Laser laser = new Laser(typedWord, world.getLaserSpeed());
+        getWorld().addObject(laser, typedWord.getX(), getWorld().getHeight());
     }
 }

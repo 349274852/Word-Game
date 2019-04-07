@@ -11,12 +11,18 @@ public class Laser extends Actor
     Word directed;
     
     private int speed;
+    private Shooter s;
     
     public Laser(Word w, int speed) {
         this.directed = w;
         this.speed = speed;
+        this.s = s;
+        //setRotation(s.getRotation() - 10);
     }
     
+    /**
+     * Returns the word that corresponds to the laser
+     */
     public Word getIntendedWord() {
         return directed;
     }
@@ -28,5 +34,14 @@ public class Laser extends Actor
     public void act() 
     {
          setLocation(getX(), getY() - speed);
+         //move(5.0);
     }    
+    
+    public void move(double distance) {
+        double angle = Math.toRadians(getRotation());
+        int x = (int) Math.round(getX() + Math.cos(angle) * distance);
+        int y = (int) Math.round(getY() + Math.sin(angle) * distance);
+        
+        setLocation(x, y);
+    }
 }
