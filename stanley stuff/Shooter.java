@@ -24,8 +24,6 @@ public class Shooter extends Actor
      */
     public void act() 
     {
-        if(lockedOn != null) {
-        }
     }    
     
     public void fire() {
