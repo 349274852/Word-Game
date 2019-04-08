@@ -11,30 +11,32 @@ public class MyWorld extends World
 
     private ArrayList<Word> vocabulary = new ArrayList<Word>();
     
-    private String difficulty = "easy";
-    
     public HashMap<Character, Word> words = new HashMap<Character, Word>();
     private Shooter shooter;
     
     private TypingManager typing;
+    private ScoreManager score;
+    private UIRenderer renderer;
     /**
      * Constructor for objects of class MyWorld.
      * 
      */
-    public MyWorld(String difficulty)
+    public MyWorld()
     {   
         super(500, 600, 1); 
-        this.difficulty = difficulty;
-        vocabulary = setupVocabulary(difficulty);
+        vocabulary = setupVocabulary();
         for(char ch = 'a'; ch <= 'z'; ++ch) {
             words.put(ch, null);
         }
         WordSpawner wordspawner = new WordSpawner(this);
         addObject(wordspawner, 0, 0);
         typing = new TypingManager(this);
+        score = new ScoreManager(this);
         addObject(typing, 0, 0);
         shooter = new Shooter();
+        renderer = new UIRenderer();
         addObject(shooter, getWidth() / 2, getHeight());
+        addObject(score, getWidth() / 2, getHeight() / 2);
     }
     
     /**
@@ -42,6 +44,13 @@ public class MyWorld extends World
      */
     public TypingManager getTypingManager() {
         return typing;
+    }
+    
+    /**
+     * Returns the score manager
+     */
+    public ScoreManager getScoreManager() {
+        return score;
     }
     
     /**
@@ -72,13 +81,14 @@ public class MyWorld extends World
         if(getWordList().get(w.getFirstLetter()) == w) {
             getWordList().put(w.getFirstLetter(), null);
         }
+        score.addScore(w.getScore());
         removeObject(w);
     }
     
     /**
      * Saves the corresponding difficulty's words text file into an arraylist and randomizes it
      */
-    public ArrayList<Word> setupVocabulary(String difficulty) {
+    public ArrayList<Word> setupVocabulary() {
         Reader reader = new Reader();
         Scanner scanner = reader.getScanner("allwords.txt");
         ArrayList<Word> list = new ArrayList<Word>();

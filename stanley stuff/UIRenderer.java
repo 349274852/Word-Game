@@ -22,4 +22,9 @@ public class UIRenderer
         img.setColor(Color.WHITE);
         img.drawString(string, x, y);
     }
+    
+    public void drawRect(GreenfootImage img, int x, int y, int width, int height, Color color) {
+        img.setColor(color);
+        img.fillRect(x, y, width, height);
+    }
 }

@@ -40,13 +40,14 @@ public class NewOpeningScreen extends World
         renderer.drawShadowString(image, "hopes to annihilate all the existing English words.", 50, 350);
         renderer.drawShadowString(image, "They have come to you and asked for your help.", 50, 400);
         renderer.drawShadowString(image, "Press Enter to begin the mission!", 50, 500);
+        
         setBackground(image);
     }
     
     public void act() {
         String key = Greenfoot.getKey();
         if("enter".equals(key)) {
-            Greenfoot.setWorld(new MyWorld("easy"));
+            Greenfoot.setWorld(new MyWorld());
         }
     }
 }

@@ -14,6 +14,7 @@ public class Word extends Actor
     
     private int delay = 2;
     private int health = 0;
+    private int score = 0;
     
     private boolean powerup = false;
     
@@ -22,6 +23,10 @@ public class Word extends Actor
     public Word() {
         ship = new GreenfootImage("enemy.png");
     }
+    
+    public int getScore() {
+        return score;
+    }   
     
     /**
      * Checks if this word is a power up
@@ -63,6 +68,7 @@ public class Word extends Actor
      */
     public void setupHealth() {
         health = word.length();
+        score = health * 10;
     }
     
     /**
