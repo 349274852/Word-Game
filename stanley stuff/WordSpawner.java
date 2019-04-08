@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * Write a description of class WordSpawner here.
  * 
- * @author (your name) 
+ * @author Stanley Chan
  * @version (a version number or a date)
  */
 public class WordSpawner extends Actor
@@ -20,15 +20,11 @@ public class WordSpawner extends Actor
     
     private HashMap<String, Integer> powerups = new HashMap<String, Integer>();
     
-    private String[] powerupsList = {"nuclearstrike", "fastshooting", "slowenemy"};
-    
     private String powerup = "";
     
     public WordSpawner(MyWorld theWorld) {
         world = theWorld;
         powerups.put("nuclearstrike", 0);
-        powerups.put("fastshooting", 0);
-        powerups.put("slowenemy", 0);
     }
     
     /**
@@ -64,7 +60,6 @@ public class WordSpawner extends Actor
                 powerup = "nuclearstrike";
             }
             if(world.getWordList().get(powerup.charAt(0)) == null) {
-                //something wrong here
                 int random = generateRandomNumber(world.getWidth());
                 Word w = new Word();
                 w.setString(powerup);
@@ -75,14 +70,6 @@ public class WordSpawner extends Actor
             }
             powerupTimer = powerupTimerDef;
         }
-    }
-    
-    /**
-     * Returns a random power up
-     */
-    public String getRandomPowerup() {
-        int number = Greenfoot.getRandomNumber(powerupsList.length);
-        return powerupsList[number];
     }
     
     /**

@@ -3,7 +3,7 @@ import java.util.*;
 /**
  * Write a description of class Word here.
  * 
- * @author (your name) 
+ * @author Stanley Chan
  * @version (a version number or a date)
  */
 public class Word extends Actor

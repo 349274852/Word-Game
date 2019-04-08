@@ -1,5 +1,9 @@
 import java.util.Iterator;
 
+/**
+ * @author Kelvin Mo
+ */
+
 public class Queue<T> implements Iterable<T>
 {
     private Node first, last;

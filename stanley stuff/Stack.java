@@ -1,5 +1,9 @@
 import java.util.Iterator;
 
+/**
+ * @author Kelvin Mo
+ */
+
 public class Stack<E> implements Iterable<E>
 {
     private Node first = null;

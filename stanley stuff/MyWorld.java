@@ -3,7 +3,7 @@ import java.util.*;
 /**
  * Write a description of class MyWorld here.
  * 
- * @author (your name) 
+ * @author Stanley Chan 
  * @version (a version number or a date)
  */
 public class MyWorld extends World
@@ -15,12 +15,6 @@ public class MyWorld extends World
     
     public HashMap<Character, Word> words = new HashMap<Character, Word>();
     private Shooter shooter;
-    
-    private int laserSpeed = 5;
-    private boolean laserPowerUp = false;
-    
-    private int laserTimer = 150;
-    private int laserTimerDef = 150;
     
     private TypingManager typing;
     /**
@@ -43,10 +37,16 @@ public class MyWorld extends World
         addObject(shooter, getWidth() / 2, getHeight());
     }
     
+    /**
+     * Returns the typing manager
+     */
     public TypingManager getTypingManager() {
         return typing;
     }
     
+    /**
+     * Returns the shooter object
+     */
     public Shooter getShooter() {
         return shooter;
     }

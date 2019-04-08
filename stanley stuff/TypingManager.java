@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class TypingManager here.
  * 
- * @author (your name) 
+ * @author Stanley Chan
  * @version (a version number or a date)
  */
 public class TypingManager extends Actor
@@ -48,11 +48,13 @@ public class TypingManager extends Actor
            if(!typingWord) {
                 if(world.getWordList().get(letter) != null) {
                    Word word = world.getWordList().get(letter);
+                   world.getShooter().setLockedOn(word);
+                   world.getShooter().fire();
                    typedWord = word;
                    String str = word.getString();
                    str = str.substring(1, str.length());
                    curWord = str;
-                   fire();
+                   //fire();
                    typedWord.chopWord();
                 }
            }else{
@@ -60,7 +62,8 @@ public class TypingManager extends Actor
                if(letter == curWord.charAt(0)) {
                    //Cuts the word and removes the first letter, replacing with 2nd
                    curWord = curWord.substring(1, curWord.length());
-                   fire();
+                   //fire();
+                   world.getShooter().fire();
                    typedWord.chopWord();
                    //Checks if they're finished typing the word
                    if(curWord.equals("")) {

@@ -3,7 +3,7 @@ import greenfoot.*;
 /**
  * Write a description of class UIRenderer here.
  * 
- * @author (your name) 
+ * @author Stanley Chan 
  * @version (a version number or a date)
  */
 public class UIRenderer  

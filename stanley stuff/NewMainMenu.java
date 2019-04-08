@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * Write a description of class NewMainMenu here.
  * 
- * @author (your name) 
+ * @author Stanley Chan, Kelvin Mo
  * @version (a version number or a date)
  */
 public class NewMainMenu extends World

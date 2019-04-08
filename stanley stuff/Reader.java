@@ -1,7 +1,7 @@
 /**
  * Write a description of class Reader here.
  * 
- * @author (your name) 
+ * @author N/A
  * @version (a version number or a date)
  */
 import java.util.Scanner;

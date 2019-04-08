@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Laser here.
  * 
- * @author (your name) 
+ * @author Stanley Chan, Yameen Abba
  * @version (a version number or a date)
  */
 public class Laser extends Actor
@@ -17,7 +17,7 @@ public class Laser extends Actor
         this.directed = w;
         this.speed = speed;
         this.s = s;
-        //setRotation(s.getRotation() - 10);
+        getImage().scale(getImage().getWidth() * 2, getImage().getHeight() * 2);
     }
     
     /**
@@ -33,10 +33,13 @@ public class Laser extends Actor
      */
     public void act() 
     {
-         setLocation(getX(), getY() - speed);
-         //move(5.0);
+         turnTowards(directed.getX(), directed.getY());
+         move(10);
     }    
     
+    /**
+     * Moves the laser on an angular path (Taken from Greenfoot website)
+     */
     public void move(double distance) {
         double angle = Math.toRadians(getRotation());
         int x = (int) Math.round(getX() + Math.cos(angle) * distance);
