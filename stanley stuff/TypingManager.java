@@ -20,6 +20,9 @@ public class TypingManager extends Actor
         this.world = world;
     }
     
+    /**
+     * Sets the current word being typed
+     */
     public void setTypedWord(Word w) {
         typedWord = w;
     }
@@ -54,7 +57,6 @@ public class TypingManager extends Actor
                    String str = word.getString();
                    str = str.substring(1, str.length());
                    curWord = str;
-                   //fire();
                    typedWord.chopWord();
                 }else{
                     Greenfoot.playSound("misclick.wav");
@@ -64,7 +66,6 @@ public class TypingManager extends Actor
                if(letter == curWord.charAt(0)) {
                    //Cuts the word and removes the first letter, replacing with 2nd
                    curWord = curWord.substring(1, curWord.length());
-                   //fire();
                    world.getShooter().fire();
                    typedWord.chopWord();
                    //Checks if they're finished typing the word
@@ -79,10 +80,5 @@ public class TypingManager extends Actor
            }
            delay = defDelay;
         }
-    }
-    
-    public void fire() {
-        Laser laser = new Laser(typedWord);
-        getWorld().addObject(laser, typedWord.getX(), getWorld().getHeight());
     }
 }

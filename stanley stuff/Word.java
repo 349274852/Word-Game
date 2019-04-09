@@ -24,6 +24,9 @@ public class Word extends Actor
         ship = new GreenfootImage("enemy.png");
     }
     
+    /**
+     * Returns the score of the word
+     */
     public int getScore() {
         return score;
     }   

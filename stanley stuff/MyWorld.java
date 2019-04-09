@@ -127,12 +127,12 @@ public class MyWorld extends World
     
     public void act() {
         if(score.getCounterValue() % 500 == 0 && score.getCounterValue() != noRepeatingDecreaseSpawn) {
-            if(wordspawner.getInterval() > 30) {
-                wordspawner.subtractTime(10);
+            if(wordspawner.getInterval() > 55) {
+                wordspawner.subtractTime(5);
                 noRepeatingDecreaseSpawn = score.getCounterValue();
             }
         }
-        if(score.getCounterValue() % 250 == 0 && score.getCounterValue() != noRepeatingDecreaseChar) {
+        if(score.getCounterValue() % 750 == 0 && score.getCounterValue() != noRepeatingDecreaseChar) {
             if(wordspawner.getMaxCharacters() < highestLetters) {
                 wordspawner.increaseMaxCharacters(1);
                 noRepeatingDecreaseChar = score.getCounterValue();

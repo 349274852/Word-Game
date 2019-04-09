@@ -22,18 +22,30 @@ public class ScoreManager extends Actor
         makeImage();
     }
     
+    /**
+     * Adds to the score
+     */
     public void addScore(int add) {
         score += add;
     }
     
+    /**
+     * Sets the score to a number
+     */
     public void setScore(int set) {
         score = set;
     }
     
+    /**
+     * Returns the current score
+     */
     public int getScore() {
         return score;
     }
     
+    /**
+     * Returns the counter value
+     */
     public int getCounterValue() {
         return value;
     }
@@ -55,17 +67,10 @@ public class ScoreManager extends Actor
     
     public void makeImage() {
         GreenfootImage image = new GreenfootImage(world.getWidth(), world.getHeight());
-        //renderer.drawRect(image, 2, 2, 50, 50, Color.BLACK);
-        //image.drawString("hello", 30, 30);
-        
-        //image.setColor(Color.BLACK);
-        //image.fillRect(0, 0, world.getWidth(), world.getHeight());
-        
         Font font = new Font("Arial", false, false, 18);
         image.setFont(font);
         image.setColor(Color.WHITE);
         renderer.drawShadowString(image, "" + value, 0, 30);
-        //image.drawImage(image, 360, 20);
         setImage(image);
     }
 }
