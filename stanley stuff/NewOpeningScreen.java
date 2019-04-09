@@ -13,6 +13,8 @@ public class NewOpeningScreen extends World
     
     private int width, height;
     
+    public static GreenfootSound music = new GreenfootSound("story.wav");
+    
     /**
      * Constructor for objects of class NewOpeningScreen.
      * 
@@ -25,6 +27,7 @@ public class NewOpeningScreen extends World
         width = getWidth();
         height = getHeight();
         makeImage();
+        music.play();
     }
     
     public void makeImage() {
@@ -48,6 +51,7 @@ public class NewOpeningScreen extends World
         String key = Greenfoot.getKey();
         if("enter".equals(key)) {
             Greenfoot.setWorld(new MyWorld());
+            music.stop();
         }
     }
 }

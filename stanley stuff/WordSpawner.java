@@ -27,11 +27,23 @@ public class WordSpawner extends Actor
         powerups.put("nuclearstrike", 0);
     }
     
+    public void increaseMaxCharacters(int modifier) {
+        maxCharacters += modifier;
+    }
+    
+    public int getMaxCharacters() {
+        return maxCharacters;
+    }
+    
     /**
      * Subtracts the interval between word spawns
      */
     public void subtractTime(int modifier) {
         wordTimerDef -= modifier;
+    }
+    
+    public int getInterval() {
+        return wordTimerDef;
     }
     
     /**

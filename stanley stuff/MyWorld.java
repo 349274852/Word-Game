@@ -17,6 +17,12 @@ public class MyWorld extends World
     private TypingManager typing;
     private ScoreManager score;
     private UIRenderer renderer;
+    private WordSpawner wordspawner;
+    
+    private int highestLetters = 0;
+    
+    public static GreenfootSound music = new GreenfootSound("gaming.wav");
+    
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -28,7 +34,7 @@ public class MyWorld extends World
         for(char ch = 'a'; ch <= 'z'; ++ch) {
             words.put(ch, null);
         }
-        WordSpawner wordspawner = new WordSpawner(this);
+        wordspawner = new WordSpawner(this);
         addObject(wordspawner, 0, 0);
         typing = new TypingManager(this);
         score = new ScoreManager(this);
@@ -37,6 +43,8 @@ public class MyWorld extends World
         renderer = new UIRenderer();
         addObject(shooter, getWidth() / 2, getHeight());
         addObject(score, getWidth() / 2, getHeight() / 2);
+        setBackground(new GreenfootImage("earth modified.jpg"));
+        music.play();
     }
     
     /**
@@ -94,6 +102,9 @@ public class MyWorld extends World
         ArrayList<Word> list = new ArrayList<Word>();
         while(scanner.hasNext()) {
             String str = scanner.next().toLowerCase();
+            if(str.length() > highestLetters) {
+                highestLetters = str.length();
+            }
             Word word = new Word();
             word.setString(str);
             word.setupHealth();
@@ -109,5 +120,23 @@ public class MyWorld extends World
         }
         
         return number;
+    }
+    
+    int noRepeatingDecreaseSpawn = 0;
+    int noRepeatingDecreaseChar = 0;
+    
+    public void act() {
+        if(score.getCounterValue() % 500 == 0 && score.getCounterValue() != noRepeatingDecreaseSpawn) {
+            if(wordspawner.getInterval() > 30) {
+                wordspawner.subtractTime(10);
+                noRepeatingDecreaseSpawn = score.getCounterValue();
+            }
+        }
+        if(score.getCounterValue() % 250 == 0 && score.getCounterValue() != noRepeatingDecreaseChar) {
+            if(wordspawner.getMaxCharacters() < highestLetters) {
+                wordspawner.increaseMaxCharacters(1);
+                noRepeatingDecreaseChar = score.getCounterValue();
+            }
+        }
     }
 }

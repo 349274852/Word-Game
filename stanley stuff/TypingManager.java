@@ -56,6 +56,8 @@ public class TypingManager extends Actor
                    curWord = str;
                    //fire();
                    typedWord.chopWord();
+                }else{
+                    Greenfoot.playSound("misclick.wav");
                 }
            }else{
                 //Checks if the key they pressed matches the first letter of the word typing
@@ -71,6 +73,8 @@ public class TypingManager extends Actor
                        typedWord = null;
                        world.getShooter().setLockedOn(null);
                    }
+               }else{
+                   Greenfoot.playSound("misclick.wav");
                }
            }
            delay = defDelay;

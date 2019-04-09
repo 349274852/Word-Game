@@ -19,6 +19,8 @@ public class NewMainMenu extends World
     private MenuSelector select;
     private UIRenderer renderer;
     
+    public static GreenfootSound music = new GreenfootSound("open.wav");
+    
     /**
      * Constructor for objects of class NewMainMenu.
      * 
@@ -36,6 +38,7 @@ public class NewMainMenu extends World
         renderer = new UIRenderer();
         makeImage();
         addObject(select, width / 2 - 50, height / 2 + 45);
+        music.play();
     }
     
     public void act() {
@@ -59,6 +62,7 @@ public class NewMainMenu extends World
         switch(world) {
             case "play":
                 Greenfoot.setWorld(new NewOpeningScreen());
+                music.stop();
                 break;
         }
     }

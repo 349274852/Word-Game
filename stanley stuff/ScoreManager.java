@@ -30,6 +30,14 @@ public class ScoreManager extends Actor
         score = set;
     }
     
+    public int getScore() {
+        return score;
+    }
+    
+    public int getCounterValue() {
+        return value;
+    }
+    
     /**
      * Act - do whatever the ScoreManager wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

@@ -122,6 +122,7 @@ public class Word extends Actor
             MyWorld w = (MyWorld) getWorld();
             w.removeWord(this);
         }
+        
     }
     
     /**
