@@ -47,6 +47,10 @@ public class MyWorld extends World
         music.play();
     }
     
+    public void die() {
+        Greenfoot.setWorld(new GameOver());
+    }
+    
     /**
      * Returns the typing manager
      */
@@ -90,6 +94,8 @@ public class MyWorld extends World
             getWordList().put(w.getFirstLetter(), null);
         }
         score.addScore(w.getScore());
+        Explosion explosion = new Explosion();
+        addObject(explosion, w.getX(), w.getY());
         removeObject(w);
     }
     

@@ -101,6 +101,7 @@ public class Word extends Actor
 
     public void act() 
     {
+        checkDeath();
         //Moves the word down the screen
         if(delay > 0) delay--;
         else{
@@ -129,10 +130,22 @@ public class Word extends Actor
     }
     
     /**
+     * Check if the player is dead by examining whether there is an enemy
+     * touching the baseline.
+     */
+    public void checkDeath() {
+        MyWorld w = (MyWorld) getWorld();
+        if(getY() >= getWorld().getHeight()-10) {
+            w.die();
+        }
+    }
+    
+    /**
      * Activates the given power up
      */
     public void activatePowerUp(String powerupType) {
         MyWorld w = (MyWorld) getWorld();
+        w.removeWord(this);
         switch(powerupType){
             case "nuclearstrike":
                 for(Character c : w.getWordList().keySet()) {
@@ -147,6 +160,5 @@ public class Word extends Actor
                 w.getTypingManager().setTypedWord(null);
                 break;
         }
-        w.removeWord(this);
     }
 }
