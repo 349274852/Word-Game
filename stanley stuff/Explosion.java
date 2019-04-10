@@ -13,7 +13,9 @@ public class Explosion extends Actor
     private int timeIntervalDef = 2;
     
     public Explosion() {
-        setImage(new GreenfootImage("explosion_" + currentSprite + ".png"));
+        GreenfootImage img = new GreenfootImage("explosion_" + currentSprite + ".png");
+        img.scale(img.getWidth() / 2 + 25, img.getHeight() / 2 + 25);
+        setImage(img);
     }
     
     /**
@@ -27,7 +29,9 @@ public class Explosion extends Actor
         }else{
             if(currentSprite < 30) {
                 currentSprite++;
-                setImage(new GreenfootImage("explosion_" + currentSprite + ".png"));
+                GreenfootImage img = new GreenfootImage("explosion_" + currentSprite + ".png");
+                img.scale(img.getWidth() / 2 + 25, img.getHeight() / 2 + 25);
+                setImage(img);
                 timeInterval = timeIntervalDef;
             }else{
                 getWorld().removeObject(this);

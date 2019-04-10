@@ -9,37 +9,38 @@ import java.util.*;
 public class Scores  
 {
     // instance variables - replace the example below with your own
-    private HashMap<String, Integer> scores = new HashMap<String, Integer>();
+    private ArrayList<PlayerScore> scores = new ArrayList<PlayerScore>();
     
     public Scores()
     {
-        addScore("jane", 20);
-        addScore("james", 35);
-        addScore("bob", 70);
-        addScore("jimmy", 60);
-        for(String s : scores.keySet()) {
-            System.out.println(s + ", " + scores.get(s));
+        PlayerScore p1 = new PlayerScore("jim", 20);
+        PlayerScore p2 = new PlayerScore("hey", 40);
+        PlayerScore p3 = new PlayerScore("bye", 11);
+        scores.add(p1);
+        scores.add(p2);
+        scores.add(p3);
+        sortScores();
+        for(PlayerScore s : scores) {
+            System.out.println(s.getName());
         }
     }
     
-    public void addScore(String name, int score) {
-        HashMap<String, Integer> sorted = new HashMap<String, Integer>();
-        if(scores.size() == 0) {
-            scores.put(name, score);
-            return;
-        }
-        for(String s : scores.keySet()) {
-            if(scores.get(s) < score) {
-                sorted.put(name, score);
-            }
-            sorted.put(s, scores.get(s));
-        }
-        scores = sorted;
+    public void addScore(PlayerScore player) {
+        scores.add(player);
     }
     
     public void sortScores() {
-        for(String s : scores.keySet()) {
-            
+        ArrayList<PlayerScore> sorted = new ArrayList<PlayerScore>();
+        PlayerScore highest = sorted.get(0);
+        while(!scores.isEmpty()) {
+            for(int i = 0; i < scores.size(); i++) {
+                if(scores.get(i).getScore() > highest.getScore()) {
+                    highest = scores.get(i);
+                }
+            }
+            sorted.add(highest);
+            scores.remove(highest);
         }
+        scores = sorted;
     }
 }
