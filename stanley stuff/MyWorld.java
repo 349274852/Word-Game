@@ -21,7 +21,7 @@ public class MyWorld extends World
     
     private int highestLetters = 0;
     
-    public static GreenfootSound music = new GreenfootSound("gaming.wav");
+    public static GreenfootSound music = new GreenfootSound("gaming.mp3");
     
     /**
      * Constructor for objects of class MyWorld.
@@ -48,7 +48,8 @@ public class MyWorld extends World
     }
     
     public void die() {
-        Greenfoot.setWorld(new GameOver(getScoreManager().getScore()));
+        music.stop();
+        Greenfoot.setWorld(new EnterName(getScoreManager().getScore()));
     }
     
     /**
@@ -136,6 +137,7 @@ public class MyWorld extends World
             if(wordspawner.getInterval() > 55) {
                 wordspawner.subtractTime(5);
                 noRepeatingDecreaseSpawn = score.getCounterValue();
+                score.addLevel(1);
             }
         }
         if(score.getCounterValue() % 750 == 0 && score.getCounterValue() != noRepeatingDecreaseChar) {

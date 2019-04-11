@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class MainMenu2 here.
  * 
- * @author (your name) 
+ * @author Steven Lin
  * @version (a version number or a date)
  */
 public class MainMenu2 extends World
@@ -14,7 +14,7 @@ public class MainMenu2 extends World
      * 
      */
     
-    public static GreenfootSound music = new GreenfootSound("open.wav");
+    public static GreenfootSound music = new GreenfootSound("open.mp3");
     
     public MainMenu2()
     {    

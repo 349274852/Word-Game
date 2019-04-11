@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class HighScores here.
  * 
- * @author (your name) 
+ * @author Stanley Chan
  * @version (a version number or a date)
  */
 public class HighScores extends World
@@ -12,7 +12,7 @@ public class HighScores extends World
     UIRenderer renderer;
     
     private int width, height;
-    Scores score;
+    Scores score = new Scores();
     
     /**
      * Constructor for objects of class HighScores.
@@ -25,7 +25,6 @@ public class HighScores extends World
         renderer = new UIRenderer();
         width = getWidth();
         height = getHeight();
-        score = new Scores();
         makeImage();
     }
     

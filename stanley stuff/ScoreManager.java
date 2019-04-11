@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * Write a description of class ScoreManager here.
  * 
- * @author (your name) 
+ * @author Stanley Chan
  * @version (a version number or a date)
  */
 public class ScoreManager extends Actor
@@ -12,11 +12,11 @@ public class ScoreManager extends Actor
     private int value = 0;
     private int score = 0;
     
+    private int level = 1;
+    
     private MyWorld world;
     
     private UIRenderer renderer;
-    
-    public static ArrayList<PlayerScore> scores = new ArrayList<PlayerScore>();
     
     public ScoreManager(MyWorld world) {
         this.world = world;
@@ -25,12 +25,21 @@ public class ScoreManager extends Actor
         makeImage();
     }
     
+    public static boolean containsName(String playername) {
+        for(PlayerScore s : Scores.array) {
+            System.out.println(s.getName());
+            if(s.getName().equals(playername)) return true;
+        }
+        return false;
+    }
+    
     public static void addToScoreboard(String playername, int score) {
         PlayerScore player = new PlayerScore(playername, score);
-        scores.add(player);
-        if(scores.size() > 10) {
-            scores.remove(scores.size());
+        Scores.array.add(player);
+        if(Scores.array.size() > 10) {
+            Scores.array.remove(Scores.array.size());
         }
+        System.out.println(Scores.array.size());
     }
     
     /**
@@ -76,12 +85,17 @@ public class ScoreManager extends Actor
         }
     }   
     
+    public void addLevel(int modifier) {
+        level += modifier;
+    }
+    
     public void makeImage() {
         GreenfootImage image = new GreenfootImage(world.getWidth(), world.getHeight());
         Font font = new Font("Arial", false, false, 18);
         image.setFont(font);
         image.setColor(Color.WHITE);
         renderer.drawShadowString(image, "" + value, 0, 30);
+        renderer.drawShadowString(image, "Level: " + level, 0, 60);
         setImage(image);
     }
 }

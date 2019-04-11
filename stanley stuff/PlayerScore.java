@@ -1,7 +1,7 @@
 /**
  * Write a description of class PlayerScore here.
  * 
- * @author (your name) 
+ * @author Stanley Chan
  * @version (a version number or a date)
  */
 public class PlayerScore  

@@ -3,36 +3,35 @@ import java.util.*;
 /**
  * Write a description of class HighScore here.
  * 
- * @author (your name) 
+ * @author Stanley Chan 
  * @version (a version number or a date)
  */
 public class Scores  
 {
     // instance variables - replace the example below with your own
-    private ArrayList<PlayerScore> scores = new ArrayList<PlayerScore>();
+    public static ArrayList<PlayerScore> array = new ArrayList<PlayerScore>();
     
     public Scores()
     {
-        scores = ScoreManager.scores;
         sortScores();
     }
     
     public ArrayList<PlayerScore> getScores() {
-        return scores;
+        return array;
     }
     
     public void sortScores() {
         ArrayList<PlayerScore> sorted = new ArrayList<PlayerScore>();
-        while(!scores.isEmpty()) {
-            PlayerScore highest = scores.get(0);
-            for(int i = 0; i < scores.size(); i++) {
-                if(scores.get(i).getScore() > highest.getScore()) {
-                    highest = scores.get(i);
+        while(!array.isEmpty()) {
+            PlayerScore highest = array.get(0);
+            for(int i = 0; i < array.size(); i++) {
+                if(array.get(i).getScore() > highest.getScore()) {
+                    highest = array.get(i);
                 }
             }
-            scores.remove(highest);
+            array.remove(highest);
             sorted.add(highest);
         }
-        scores = sorted;
+        array = sorted;
     }
 }

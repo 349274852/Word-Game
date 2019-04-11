@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class TitleText here.
  * 
- * @author (your name) 
+ * @author Steven Lin
  * @version (a version number or a date)
  */
 public class TitleText extends Actor

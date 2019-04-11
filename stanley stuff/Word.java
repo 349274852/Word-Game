@@ -105,8 +105,8 @@ public class Word extends Actor
         //Moves the word down the screen
         if(delay > 0) delay--;
         else{
-            delay = 2;
-            setLocation(getX(), getY() + 1);
+            delay = 0;
+            setLocation(getX(), getY() + 5);
         }
         //Checks when a laser hits the word
         Actor laser = getOneIntersectingObject(Laser.class);
