@@ -25,8 +25,8 @@ public class HighScores extends World
         renderer = new UIRenderer();
         width = getWidth();
         height = getHeight();
-        makeImage();
         score = new Scores();
+        makeImage();
     }
     
     public void makeImage() {
@@ -36,6 +36,20 @@ public class HighScores extends World
         image.setFont(font);
         image.setColor(Color.WHITE);
         renderer.drawShadowString(image, "High Scores", width / 2 - 53, 25);
+        renderer.drawShadowString(image, "Press escape to return to menu", 2, getHeight() - 20);
+        int x = 0;
+        if(score.getScores() != null) {
+            for(PlayerScore p : score.getScores()) {
+                renderer.drawShadowString(image, p.getName() + ", " + p.getScore(), width / 2 - 53, 100 + x);
+                x += 30;
+            }
+        }
         setBackground(image);
+    }
+    
+    public void act() {
+        if("escape".equals(Greenfoot.getKey())) {
+            Greenfoot.setWorld(new MainMenu2());
+        }
     }
 }

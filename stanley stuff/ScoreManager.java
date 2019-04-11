@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.*;
 
 /**
  * Write a description of class ScoreManager here.
@@ -15,11 +16,21 @@ public class ScoreManager extends Actor
     
     private UIRenderer renderer;
     
+    public static ArrayList<PlayerScore> scores = new ArrayList<PlayerScore>();
+    
     public ScoreManager(MyWorld world) {
         this.world = world;
         renderer = new UIRenderer();
         
         makeImage();
+    }
+    
+    public static void addToScoreboard(String playername, int score) {
+        PlayerScore player = new PlayerScore(playername, score);
+        scores.add(player);
+        if(scores.size() > 10) {
+            scores.remove(scores.size());
+        }
     }
     
     /**

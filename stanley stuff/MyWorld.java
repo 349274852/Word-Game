@@ -48,7 +48,7 @@ public class MyWorld extends World
     }
     
     public void die() {
-        Greenfoot.setWorld(new GameOver());
+        Greenfoot.setWorld(new GameOver(getScoreManager().getScore()));
     }
     
     /**

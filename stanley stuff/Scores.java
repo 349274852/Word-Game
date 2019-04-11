@@ -13,33 +13,25 @@ public class Scores
     
     public Scores()
     {
-        PlayerScore p1 = new PlayerScore("jim", 20);
-        PlayerScore p2 = new PlayerScore("hey", 40);
-        PlayerScore p3 = new PlayerScore("bye", 11);
-        scores.add(p1);
-        scores.add(p2);
-        scores.add(p3);
+        scores = ScoreManager.scores;
         sortScores();
-        for(PlayerScore s : scores) {
-            System.out.println(s.getName());
-        }
     }
     
-    public void addScore(PlayerScore player) {
-        scores.add(player);
+    public ArrayList<PlayerScore> getScores() {
+        return scores;
     }
     
     public void sortScores() {
         ArrayList<PlayerScore> sorted = new ArrayList<PlayerScore>();
-        PlayerScore highest = sorted.get(0);
         while(!scores.isEmpty()) {
+            PlayerScore highest = scores.get(0);
             for(int i = 0; i < scores.size(); i++) {
                 if(scores.get(i).getScore() > highest.getScore()) {
                     highest = scores.get(i);
                 }
             }
-            sorted.add(highest);
             scores.remove(highest);
+            sorted.add(highest);
         }
         scores = sorted;
     }
