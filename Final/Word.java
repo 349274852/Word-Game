@@ -129,7 +129,7 @@ public class Word extends Actor
     }
     
     /**
-     * Check if the player is dead by examining whether there is an enemy
+     * Check if the player is dead or has lost a heart by examining whether there is an enemy
      * touching the baseline.
      */
     public void checkDeath() {
@@ -139,7 +139,25 @@ public class Word extends Actor
                 w.removeObject(this);
                 return;
             }
-            w.die();
+            
+            else if (getWorld().getObjects(Lives.class).size() == 3)
+            {
+                w.firstL();
+                w.removeObject(this);
+                return;
+            }
+            
+            else if (getWorld().getObjects(Lives.class).size() == 2)
+            {
+                w.secondL();
+                w.removeObject(this);
+                return;
+            }
+            
+            else if(getWorld().getObjects(Lives.class).size() == 1)
+            {
+                w.die();
+            }
         }
     }
     

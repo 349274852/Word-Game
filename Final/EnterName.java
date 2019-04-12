@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class EnterName here.
  * 
- * @author Stanley Chan
+ * @author Stanley Chan, Yameen
  * @version (a version number or a date)
  */
 public class EnterName extends World
@@ -37,13 +37,15 @@ public class EnterName extends World
     }
     
     public void makeImage() {
-        image = new GreenfootImage("earth modified.jpg");
+        image = new GreenfootImage("blackhole.jpg");
+        GreenfootImage enterName = new GreenfootImage("enter name.png");
+        addObject(new EnterNameImage(), getWidth()/2, 400);
+        addObject(new YouLose(), getWidth() / 2, 150);
+        
         image.setFont(new Font("Arial", false, false, 50));
         image.setColor(Color.WHITE);
-        renderer.drawShadowString(image, "You lose!", getWidth() / 2 - 100, 50);
-        renderer.drawShadowString(image, "Enter name (type):", 3, 200);
         image.setFont(new Font("Arial", false, false, 25));
-        renderer.drawShadowString(image, name, 3, 250);
+        renderer.drawShadowString(image, name, 25, getHeight() - 50);
         image.setFont(new Font("Arial", false, false, 20));
         renderer.drawShadowString(image, "Words Annihilated(" + wordsKilled + "):", getWidth() - 250, 350);
         setBackground(image);

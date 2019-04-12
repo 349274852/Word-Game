@@ -21,7 +21,6 @@ public class TextImage extends Actor
             setLocation(word.getX(), 0);
         }
         setRotation(getRotation() + 180);
-        
     }
     
     /**

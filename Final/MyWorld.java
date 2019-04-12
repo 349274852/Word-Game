@@ -21,6 +21,10 @@ public class MyWorld extends World
     
     private int highestLetters = 0;
     
+    private Lives firstLife = new Lives();
+    private Lives secondLife = new Lives();
+    private Lives thirdLife = new Lives();
+    
     private Queue<Word> wordsKilled = new Queue<Word>();
     
     /**
@@ -42,6 +46,11 @@ public class MyWorld extends World
         renderer = new UIRenderer();
         addObject(shooter, getWidth() / 2, getHeight());
         addObject(score, getWidth() / 2, getHeight() / 2);
+        
+        addObject(thirdLife, 10, 75);
+        addObject(secondLife, 30, 75);
+        addObject(firstLife, 50, 75);
+        
         setBackground(new GreenfootImage("earth modified.jpg"));
     }
     
@@ -135,6 +144,19 @@ public class MyWorld extends World
         }
         
         return number;
+    }
+    
+    /**
+     * Following two methods are used to remove the first heart and second heart for the Word class.
+     */
+    public void firstL()
+    {
+        removeObject(firstLife);
+    }
+    
+    public void secondL()
+    {
+        removeObject(secondLife);
     }
     
     int noRepeatingDecreaseSpawn = 0;
