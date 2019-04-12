@@ -79,7 +79,7 @@ public class WordSpawner extends Actor
             if(powerup.equals("")) {
                 powerup = "nuclearstrike";
             }
-            if(world.getWordList().get(powerup.charAt(0)) == null && powerupCount < 1 && maxCharacters >= 7) {
+            if(world.getWordList().get(powerup.charAt(0)) == null && powerupCount < 3 && maxCharacters >= 7) {
                 int random = generateRandomNumber(world.getWidth());
                 Word w = new Word();
                 w.setString(powerup);
