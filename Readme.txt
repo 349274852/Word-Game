@@ -22,7 +22,6 @@ could use it across different classes.
 We were originally going to have different music playing for each menu screen, but each music file was incredibly large, so changing back and forth from
 song to song as the player navigated through the menus took up noticeably lots of memory, and as such as ran into multiple java heap memory space errors.
 Also, we were also planning on having multiple different power ups, such as the ability to shoot faster lasers, having the enemies slow down, etc. but
-the first powerup took us so long to figure out that we just decided to stick with one due to time constraints. Furthermore, we were also planning on
-giving the player 3 lives, but also due to lack of time we were not able to implement this feature.
+the first powerup took us so long to figure out that we just decided to stick with one due to time constraints.
 
  
