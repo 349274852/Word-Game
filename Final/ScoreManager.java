@@ -27,7 +27,6 @@ public class ScoreManager extends Actor
     
     public static boolean containsName(String playername) {
         for(PlayerScore s : Scores.array) {
-            System.out.println(s.getName());
             if(s.getName().equals(playername)) return true;
         }
         return false;
@@ -39,7 +38,6 @@ public class ScoreManager extends Actor
         if(Scores.array.size() > 10) {
             Scores.array.remove(Scores.array.size());
         }
-        System.out.println(Scores.array.size());
     }
     
     /**
