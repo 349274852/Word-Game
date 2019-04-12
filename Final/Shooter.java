@@ -33,10 +33,12 @@ public class Shooter extends Actor
      * Fires a laser
      */
     public void fire() {
-        Greenfoot.playSound("shoot.wav");
-        turnTowards(lockedOn.getX(), lockedOn.getY());
-        setRotation(getRotation() + 90);
-        Laser l = new Laser(lockedOn);
-        getWorld().addObject(l, getX(), getY() - 50);
+        if(lockedOn.inWorld()) {
+            Greenfoot.playSound("shoot.wav");
+            turnTowards(lockedOn.getX(), lockedOn.getY());
+            setRotation(getRotation() + 90);
+            Laser l = new Laser(lockedOn);
+            getWorld().addObject(l, getX(), getY() - 50);
+        }
     }
 }

@@ -34,8 +34,12 @@ public class Laser extends Actor
      */
     public void act() 
     {
+        if(directed.inWorld()) {
          turnTowards(directed.getX(), directed.getY());
          move(10);
+        }else{
+            getWorld().removeObject(this);
+        }
     }    
     
     /**
