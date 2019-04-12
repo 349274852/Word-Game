@@ -18,10 +18,8 @@ public class Word extends Actor
     
     private boolean powerup = false;
     
-    private GreenfootImage ship;
-    
     public Word() {
-        ship = new GreenfootImage("enemy.png");
+        
     }
     
     /**
@@ -102,11 +100,12 @@ public class Word extends Actor
     public void act() 
     {
         checkDeath();
+        if(!inWorld()) return;
         //Moves the word down the screen
         if(delay > 0) delay--;
         else{
-            delay = 0;
-            setLocation(getX(), getY() + 5);
+            delay = 2;
+            setLocation(getX(), getY() + 1);
         }
         //Checks when a laser hits the word
         Actor laser = getOneIntersectingObject(Laser.class);
@@ -136,6 +135,10 @@ public class Word extends Actor
     public void checkDeath() {
         MyWorld w = (MyWorld) getWorld();
         if(getY() >= getWorld().getHeight()-10) {
+            if(isPowerUp()) {
+                w.removeObject(this);
+                return;
+            }
             w.die();
         }
     }
