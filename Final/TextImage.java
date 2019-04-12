@@ -12,9 +12,16 @@ public class TextImage extends Actor
     
     public TextImage(Word word) {
         this.word = word;
-        setImage(new GreenfootImage("enemy.png"));
+        if(word.isPowerUp()) {
+            setImage(new GreenfootImage("nuke.png"));
+            getImage().scale(getImage().getWidth() / 2, getImage().getHeight() / 2);
+            setLocation(word.getX(), 30);
+        }else {
+            setImage(new GreenfootImage("enemy.png"));
+            setLocation(word.getX(), 0);
+        }
         setRotation(getRotation() + 180);
-        setLocation(word.getX(), 0);
+        
     }
     
     /**
