@@ -100,6 +100,7 @@ public class Word extends Actor
     public void act() 
     {
         checkDeath();
+        if(!inWorld()) return;
         //Moves the word down the screen
         if(delay > 0) delay--;
         else{
@@ -134,6 +135,10 @@ public class Word extends Actor
     public void checkDeath() {
         MyWorld w = (MyWorld) getWorld();
         if(getY() >= getWorld().getHeight()-10) {
+            if(isPowerUp()) {
+                w.removeObject(this);
+                return;
+            }
             w.die();
         }
     }
