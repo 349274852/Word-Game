@@ -25,6 +25,9 @@ public class ScoreManager extends Actor
         makeImage();
     }
     
+    /**
+     * Checks if the player name is already present in the high scores list.
+     */
     public static boolean containsName(String playername) {
         for(PlayerScore s : Scores.array) {
             if(s.getName().equals(playername)) return true;
@@ -32,6 +35,9 @@ public class ScoreManager extends Actor
         return false;
     }
     
+    /**
+     * Adds the player name to the score list.
+     */
     public static void addToScoreboard(String playername, int score) {
         PlayerScore player = new PlayerScore(playername, score);
         Scores.array.add(player);
@@ -83,6 +89,9 @@ public class ScoreManager extends Actor
         }
     }   
     
+    /**
+     * Adds to the current level.
+     */
     public void addLevel(int modifier) {
         level += modifier;
     }

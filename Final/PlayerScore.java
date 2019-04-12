@@ -18,10 +18,16 @@ public class PlayerScore
         this.score = score;
     }
     
+    /**
+     * Returns the name of the player
+     */
     public String getName() {
         return name;
     }
     
+    /**
+     * Gets the score of the player
+     */
     public int getScore() {
         return score;
     }

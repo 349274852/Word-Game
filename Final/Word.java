@@ -137,27 +137,26 @@ public class Word extends Actor
         if(getY() >= getWorld().getHeight()-10) {
             if(isPowerUp()) {
                 w.removeObject(this);
-                return;
+                w.getWordSpawner().powerupCount--;
             }
             
             else if (getWorld().getObjects(Lives.class).size() == 3)
             {
                 w.firstL();
                 w.removeObject(this);
-                return;
             }
             
             else if (getWorld().getObjects(Lives.class).size() == 2)
             {
                 w.secondL();
                 w.removeObject(this);
-                return;
             }
             
             else if(getWorld().getObjects(Lives.class).size() == 1)
             {
                 w.die();
             }
+            w.getWordList().put(getFirstLetter(), null);
         }
     }
     

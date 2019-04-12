@@ -13,9 +13,6 @@ public class TypingManager extends Actor
     Word typedWord;
     MyWorld world;
     
-    int delay = 2;
-    int defDelay = 2;
-    
     public TypingManager(MyWorld world) {
         getImage().setTransparency(0);
         this.world = world;
@@ -34,10 +31,6 @@ public class TypingManager extends Actor
      */
     public void act() 
     {
-        if(delay > 0) {
-            delay--;
-            return;
-        }
         typingWord = typedWord != null;
         String key = Greenfoot.getKey();
         if(key != null) {
@@ -79,7 +72,6 @@ public class TypingManager extends Actor
                    Greenfoot.playSound("misclick.wav");
                }
            }
-           delay = defDelay;
         }
     }
 }

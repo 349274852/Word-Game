@@ -16,10 +16,16 @@ public class Scores
         sortScores();
     }
     
+    /**
+     * Gets all of the scores.
+     */
     public ArrayList<PlayerScore> getScores() {
         return array;
     }
     
+    /**
+     * Sorts the scores in descending order.
+     */
     public void sortScores() {
         ArrayList<PlayerScore> sorted = new ArrayList<PlayerScore>();
         while(!array.isEmpty()) {

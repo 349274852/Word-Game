@@ -147,6 +147,13 @@ public class MyWorld extends World
     }
     
     /**
+     * Returns the word spawner object
+     */
+    public WordSpawner getWordSpawner() {
+        return wordspawner;
+    }
+    
+    /**
      * Following two methods are used to remove the first heart and second heart for the Word class.
      */
     public void firstL()
